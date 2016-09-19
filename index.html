@@ -76,7 +76,7 @@ d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
 		d.Encounter_date = parseDate(d.Encounter_date);
 		d.Month = +d.Encounter_date.getMonth();
-        console.log(d.Encounter_date.getMonth());
+        //console.log(d.Encounter_date.getMonth());
     });
 
     // Scale the range of the data
@@ -92,6 +92,8 @@ d3.csv("stocks.csv", function(error, data) {
 
     legendSpace = width/dataNest.length; // spacing for legend
 
+    
+       
     // Loop through each symbol / key
     dataNest.forEach(function(d,i) { 
 
