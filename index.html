@@ -59,7 +59,7 @@ var getMonth = function(d){
 // Define the line
 var priceline = d3.svg.line()	
     .x(function(d) { return x(d.Encounter_date);})
-    .y(function(d) { return y(d.value); });
+    .y(function(d) { return y(d.price); });
     
 // Adds the svg canvas
 var svg = d3.select("body")
@@ -75,13 +75,13 @@ var svg = d3.select("body")
 d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
 		d.Encounter_date = parseDate(d.Encounter_date);
-		d.value = +d.value;
+		d.price = +d.price;
         console.log(d.Encounter_date);
     });
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
-    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    y.domain([0, d3.max(data, function(d) { return d.price; })]);
 
     // Nest the entries by symbol
     var dataNest = d3.nest()
@@ -99,7 +99,7 @@ d3.csv("stocks.csv", function(error, data) {
             .attr("class", "line")
             .style("stroke", function() { // Add the colours dynamically
                 return d.color = color(d.key); })
-            .attr("d", priceline(d.values));
+            .attr("d", priceline(d.prices));
 
         // Add the Legend
         svg.append("text")
