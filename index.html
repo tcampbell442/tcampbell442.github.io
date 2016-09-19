@@ -99,7 +99,7 @@ d3.csv("stocks.csv", function(error, data) {
             .attr("class", "line")
             .style("stroke", function() { // Add the colours dynamically
                 return d.color = color(d.key); })
-            .attr("d", priceline(d.prices));
+            .attr("d", priceline(d.values));
 
         // Add the Legend
         svg.append("text")
