@@ -93,13 +93,22 @@ d3.csv("stocks.csv", function(error, data) {
                      
         //count = count +1;
         //console.log(count);
-
+        // Add line
         svg.append("path")
             .attr("class", "line")
             .style("stroke", function() { // Add the colours dynamically
                 return d.color = color(d.key); })
             .attr("d", TBILine(d.values));
 
+                     // Add the scatterplot
+        svg.selectAll("dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("r", 3.5)
+            .attr("cx", function(d) { return x(d.Encounter_date); })
+            .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+
+                     
         // Add the Legend
         svg.append("text")
             .attr("x", (legendSpace/2)+i*legendSpace) // spacing
