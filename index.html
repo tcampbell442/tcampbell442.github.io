@@ -99,7 +99,7 @@ d3.csv("stocks.csv", function(error, data) {
     // Loop through each symbol / key
     dataNest.forEach(function(d,i) {
                      
-        console.log(d.values);
+        //console.log(d.values);
         // Add line
                      
         if ( count <= 20){
@@ -114,7 +114,7 @@ d3.csv("stocks.csv", function(error, data) {
                      .data(data)
                      .enter().append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return x(d.Encounter_date); })
+                     .attr("cx", function(d) { console.log(d.values); return x(d.Encounter_date); })
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
                      
                 svg.append("dot")
