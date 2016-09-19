@@ -79,8 +79,8 @@ d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
 		d.Encounter_date = parseDate(d.Encounter_date);
 		d.Days_From1stTBI = +d.Days_From1stTBI;
-                 console.log(d.Encounter_date);
-                 console.log(d.Days_From1stTBI);
+                 //console.log(d.Encounter_date);
+                 console.log(d.values);
     });
 
     // Scale the range of the data
