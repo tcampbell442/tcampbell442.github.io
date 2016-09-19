@@ -118,15 +118,6 @@ d3.csv("stocks.csv", function(error, data) {
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
 
                      
-        // Add the Legend
-                svg.append("text")
-                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
-                     .attr("y", height + (margin.bottom/2)+ 5)
-                     .attr("class", "legend")    // style the legend
-                     .style("fill", function() { // dynamic colours
-                            return d.color = color(d.key); })
-                     .text(d.key);
-                     
         }else{
                 svg2.append("path")
                      .attr("class", "line")
@@ -143,21 +134,30 @@ d3.csv("stocks.csv", function(error, data) {
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
                      
                      
-                     // Add the Legend
-                svg2.append("text")
-                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
-                     .attr("y", height + (margin.bottom/2)+ 5)
-                     .attr("class", "legend")    // style the legend
-                     .style("fill", function() { // dynamic colours
-                            return d.color = color(d.key); })
-                     .text(d.key);
-                     
         }
                      
         count = count +1;
     });
 
        
+       // Add the Legend
+       svg.append("text")
+       .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+       .attr("y", height + (margin.bottom/2)+ 5)
+       .attr("class", "legend")    // style the legend
+       .style("fill", function() { // dynamic colours
+              return d.color = color(d.key); })
+       .text(d.key);
+
+       
+       // Add the Legend
+       svg2.append("text")
+       .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+       .attr("y", height + (margin.bottom/2)+ 5)
+       .attr("class", "legend")    // style the legend
+       .style("fill", function() { // dynamic colours
+              return d.color = color(d.key); })
+       .text(d.key);
        console.log(count);
     // Add the X Axis
     svg.append("g")
