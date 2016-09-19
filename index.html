@@ -85,7 +85,7 @@ d3.csv("stocks.csv", function(error, data) {
 
     // Nest the entries by symbol
     var dataNest = d3.nest()
-        .PatientID(function(d) {return d.symbol;})
+        .key(function(d) {return d.symbol;})
         .entries(data);
 
     var color = d3.scale.category10();   // set the colour scale
