@@ -52,7 +52,7 @@ var yAxis = d3.svg.axis().scale(y)
 
 // Define the line
 var priceline = d3.svg.line()	
-    .x(function(d) { d.date return x(d.date);})
+.x(function(d) { d.date; return x(d.date);})
     .y(function(d) { return y(d.price); });
     
 // Adds the svg canvas
