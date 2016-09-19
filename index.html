@@ -109,14 +109,22 @@ d3.csv("stocks.csv", function(error, data) {
                             return d.color = color(d.key); })
                      .attr("d", TBILine(d.values));
 
-                     // Add the scatterplot
-                svg.selectAll("dot")
-                     .data(data)
-                     .enter().append("circle")
+                //dynamic scatter plot
+                svg.append("circle")
                      .attr("r", 3.5)
                      .attr("cx", function(d) { return x(d.Encounter_date); })
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+                     
 
+                     
+        // Add the Legend
+                svg.append("text")
+                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+                     .attr("y", height + (margin.bottom/2)+ 5)
+                     .attr("class", "legend")    // style the legend
+                     .style("fill", function() { // dynamic colours
+                            return d.color = color(d.key); })
+                     .text(d.key);
                      
         }else{
                 svg2.append("path")
@@ -125,14 +133,22 @@ d3.csv("stocks.csv", function(error, data) {
                             return d.color = color(d.key); })
                      .attr("d", TBILine(d.values));
                      
-                     // Add the scatterplot
-                svg2.selectAll("dot")
-                     .data(data)
-                     .enter().append("circle")
+                     
+                     //dynamic scatter plot
+                     svg2.append("circle")
                      .attr("r", 3.5)
                      .attr("cx", function(d) { return x(d.Encounter_date); })
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
                      
+                     
+                     // Add the Legend
+                svg2.append("text")
+                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+                     .attr("y", height + (margin.bottom/2)+ 5)
+                     .attr("class", "legend")    // style the legend
+                     .style("fill", function() { // dynamic colours
+                            return d.color = color(d.key); })
+                     .text(d.key);
                      
         }
                      
@@ -140,25 +156,8 @@ d3.csv("stocks.csv", function(error, data) {
     });
 
        
-       // Add the Legend
-       svg.append("text")
-       .attr("x", (legendSpace/2)+i*legendSpace) // spacing
-       .attr("y", height + (margin.bottom/2)+ 5)
-       .attr("class", "legend")    // style the legend
-       .style("fill", function() { // dynamic colours
-              return d.color = color(d.key); })
-       .text(d.key);
-
+    console.log(count);
        
-       // Add the Legend
-       svg2.append("text")
-       .attr("x", (legendSpace/2)+i*legendSpace) // spacing
-       .attr("y", height + (margin.bottom/2)+ 5)
-       .attr("class", "legend")    // style the legend
-       .style("fill", function() { // dynamic colours
-              return d.color = color(d.key); })
-       .text(d.key);
-       console.log(count);
     // Add the X Axis
     svg.append("g")
         .attr("class", "x axis")
