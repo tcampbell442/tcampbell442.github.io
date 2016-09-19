@@ -102,7 +102,7 @@ d3.csv("stocks.csv", function(error, data) {
         //console.log(count);
         // Add line
                      
-        if ( count < 20){
+        if ( count <= 20){
                 svg.append("path")
                      .attr("class", "line")
                      .style("stroke", function() { // Add the colours dynamically
@@ -112,8 +112,8 @@ d3.csv("stocks.csv", function(error, data) {
                 //dynamic scatter plot
                 svg.append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return d.values.Encounter_date; })
-                     .attr("cy", function(d) { return d.values.Days_From1stTBI; });
+                     .attr("cx", d.Encounter_date)
+                     .attr("cy", d.Days_From1stTBI);
                      
 
                      
