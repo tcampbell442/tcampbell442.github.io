@@ -59,7 +59,7 @@ var getMonth = function(d){
 // Define the line
 var priceline = d3.svg.line()	
     .x(function(d) { return x(d.Encounter_date);})
-    .y(function(d) { return y(d.getMonth()); });
+    .y(function(d) { return y(d.date.getMonth()); });
     
 // Adds the svg canvas
 var svg = d3.select("body")
@@ -75,13 +75,13 @@ var svg = d3.select("body")
 d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
 		d.Encounter_date = parseDate(d.Encounter_date);
-		d.Month = +d.getMonth();
+		d.date.getMonth() = +d.date.getMonth();
         console.log(d.Encounter_date);
     });
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
-    y.domain([0, d3.max(data, function(d) { return d.getMonth(); })]);
+    y.domain([0, d3.max(data, function(d) { return d.date.getMonth(); })]);
 
     // Nest the entries by symbol
     var dataNest = d3.nest()
