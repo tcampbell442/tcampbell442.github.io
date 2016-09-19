@@ -137,10 +137,13 @@ d3.csv("stocks.csv", function(error, data) {
                      
                      
                      //dynamic scatter plot
-                     svg2.append("circle")
+                     svg2.selectAll("dot")
+                     .data(d.values)
+                     .enter().append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", d.Encounter_date)
-                     .attr("cy", d.Days_From1stTBI);
+                     .attr("cx", function(d) { console.log(x(d.Encounter_date)); return x(d.Encounter_date); })
+                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+
                      
                      
                      // Add the Legend
