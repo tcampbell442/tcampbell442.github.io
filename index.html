@@ -28,8 +28,7 @@ path {
 <body>
 
 <!-- load the d3.js library -->    
-<script src="https://d3js.org/d3.v3.min.js"></script>
-
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
 // Set the dimensions of the canvas / graph
@@ -38,7 +37,7 @@ var margin = {top: 30, right: 20, bottom: 70, left: 50},
     height = 300 - margin.top - margin.bottom;
 
 // Parse the date / time
-var parseDate = d3.time.format("%b %Y").parse;
+var parseDate = d3.time.format("%Y-%m-%d").parse;
 
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
@@ -66,7 +65,7 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("stocks.csv", function(error, data) {
+d3.csv("../../data2ehrSample.csv", function(error, data) {
     data.forEach(function(d) {
 		d.date = parseDate(d.date);
 		d.price = +d.price;
