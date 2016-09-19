@@ -75,7 +75,7 @@ d3.csv("stocks.csv", function(error, data) {
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
-    y.domain([0, d3.max(data, function(d) { return d.Days_From1stTBI; })]);
+    y.domain([d3.min(data, function(d) { return d.Days_From1stTBI; }), d3.max(data, function(d) { return d.Days_From1stTBI; })]);
 
     // Nest the entries by ID
     var dataNest = d3.nest()
