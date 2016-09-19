@@ -99,7 +99,7 @@ d3.csv("stocks.csv", function(error, data) {
     // Loop through each symbol / key
     dataNest.forEach(function(d,i) {
                      
-        console.log(d.values);
+        //console.log(count);
         // Add line
                      
         if ( count <= 20){
@@ -110,7 +110,9 @@ d3.csv("stocks.csv", function(error, data) {
                      .attr("d", TBILine(d.values));
 
                 //dynamic scatter plot
-                svg.append("circle")
+                svg.selectAll("dot")
+                     .data(data)
+                     .enter().append("circle")
                      .attr("r", 3.5)
                      .attr("cx", function(d) { return x(d.Encounter_date); })
                      .attr("cy", function(d) { return y(d.Days_From1stTBI); });
