@@ -111,7 +111,7 @@ d3.csv("stocks.csv", function(error, data) {
 
                 //dynamic scatter plot
                 svg.selectAll("dot")
-                     .data(d)
+                     .data(data)
                      .enter().append("circle")
                      .attr("r", 3.5)
                      .attr("cx", function(d) { return x(d.Encounter_date); })
