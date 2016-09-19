@@ -53,7 +53,7 @@
             
             // Define the line
             var priceline = d3.svg.line()
-            .x(function(d) { return x(d.Encounter_date); })
+            .x(function(d) { return x(d.date); })
             .y(function(d) { return y(d.price); });
             
             // Adds the svg canvas
@@ -68,12 +68,12 @@
                   // Get the data
                   d3.csv("stocks.csv", function(error, data) {
                          data.forEach(function(d) {
-                                      d.Encounter_date = parseDate(d.Encounter_date);
+                                      d.date = parseDate(d.date);
                                       d.price = +d.price;
                                       });
                          
                          // Scale the range of the data
-                         x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
+                         x.domain(d3.extent(data, function(d) { return d.date; }));
                          y.domain([0, d3.max(data, function(d) { return d.price; })]);
                          
                          // Nest the entries by symbol
