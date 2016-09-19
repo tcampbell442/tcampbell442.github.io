@@ -88,7 +88,7 @@ d3.csv("stocks.csv", function(error, data) {
         .key(function(d) {return d.PatientID;})
         .entries(data);
 
-    var color = d3.scale.category40();   // set the colour scale
+    var color = d3.scale.category20();   // set the colour scale
 
     legendSpace = width/dataNest.length; // spacing for legend
 
