@@ -37,7 +37,7 @@ var margin = {top: 30, right: 20, bottom: 70, left: 50},
     height = 300 - margin.top - margin.bottom;
 
 // Parse the date / time
-var parseDate = d3.time.format("%Y %m %d").parse;
+var parseDate = d3.time.format("%Y-%m-%d").parse;
 
 // Set the ranges
 var x = d3.time.scale().range([0, width]);
@@ -58,7 +58,7 @@ var getMonth = function(d){
 
 // Define the line
 var priceline = d3.svg.line()	
-    .x(function(d) { return x(d.date);})
+    .x(function(d) { return x(d.Encounter_date);})
     .y(function(d) { return y(d.price); });
     
 // Adds the svg canvas
@@ -74,13 +74,13 @@ var svg = d3.select("body")
 // Get the data
 d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
-		d.date = parseDate(d.date);
+		d.Encounter_date = parseDate(d.Encounter_date);
 		d.price = +d.price;
-        console.log(d.date);
+        console.log(d.Encounter_date);
     });
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.date; }));
+    x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
     y.domain([0, d3.max(data, function(d) { return d.price; })]);
 
     // Nest the entries by symbol
