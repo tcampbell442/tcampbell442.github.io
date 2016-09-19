@@ -137,8 +137,8 @@ d3.csv("stocks.csv", function(error, data) {
                      //dynamic scatter plot
                      svg2.append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return d.values.Encounter_date; })
-                     .attr("cy", function(d) { return d.values.Days_From1stTBI; });
+                     .attr("cx", d.Encounter_date)
+                     .attr("cy", d.Days_From1stTBI);
                      
                      
                      // Add the Legend
