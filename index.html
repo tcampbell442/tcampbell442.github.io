@@ -64,7 +64,15 @@ var svg = d3.select("body")
     .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
-              
+
+
+var svg2 = d3.select("body")
+.append("svg")
+.attr("width", 3600 + width + margin.left + margin.right)
+.attr("height", 1800 + height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
 d3.csv("stocks.csv", function(error, data) {
@@ -86,39 +94,71 @@ d3.csv("stocks.csv", function(error, data) {
 
     legendSpace = width/dataNest.length; // spacing for legend
 
-       //var count = 0;
+       var count = 0;
        
     // Loop through each symbol / key
     dataNest.forEach(function(d,i) {
                      
-        //count = count +1;
         //console.log(count);
         // Add line
-        svg.append("path")
-            .attr("class", "line")
-            .style("stroke", function() { // Add the colours dynamically
-                return d.color = color(d.key); })
-            .attr("d", TBILine(d.values));
+                     
+        if ( count < 20){
+                svg.append("path")
+                     .attr("class", "line")
+                     .style("stroke", function() { // Add the colours dynamically
+                            return d.color = color(d.key); })
+                     .attr("d", TBILine(d.values));
 
                      // Add the scatterplot
-        svg.selectAll("dot")
-            .data(data)
-            .enter().append("circle")
-            .attr("r", 3.5)
-            .attr("cx", function(d) { return x(d.Encounter_date); })
-            .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+                svg.selectAll("dot")
+                     .data(data)
+                     .enter().append("circle")
+                     .attr("r", 3.5)
+                     .attr("cx", function(d) { return x(d.Encounter_date); })
+                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
 
                      
         // Add the Legend
-        svg.append("text")
-            .attr("x", (legendSpace/2)+i*legendSpace) // spacing
-            .attr("y", height + (margin.bottom/2)+ 5)
-            .attr("class", "legend")    // style the legend
-            .style("fill", function() { // dynamic colours
-                return d.color = color(d.key); })
-            .text(d.key);
+                svg.append("text")
+                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+                     .attr("y", height + (margin.bottom/2)+ 5)
+                     .attr("class", "legend")    // style the legend
+                     .style("fill", function() { // dynamic colours
+                            return d.color = color(d.key); })
+                     .text(d.key);
+                     
+        }else{
+                svg2.append("path")
+                     .attr("class", "line")
+                     .style("stroke", function() { // Add the colours dynamically
+                            return d.color = color(d.key); })
+                     .attr("d", TBILine(d.values));
+                     
+                     // Add the scatterplot
+                svg2.selectAll("dot")
+                     .data(data)
+                     .enter().append("circle")
+                     .attr("r", 3.5)
+                     .attr("cx", function(d) { return x(d.Encounter_date); })
+                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+                     
+                     
+                     // Add the Legend
+                svg2.append("text")
+                     .attr("x", (legendSpace/2)+i*legendSpace) // spacing
+                     .attr("y", height + (margin.bottom/2)+ 5)
+                     .attr("class", "legend")    // style the legend
+                     .style("fill", function() { // dynamic colours
+                            return d.color = color(d.key); })
+                     .text(d.key);
+                     
+        }
+                     
+        count = count +1;
     });
 
+       
+       console.log(count);
     // Add the X Axis
     svg.append("g")
         .attr("class", "x axis")
@@ -129,6 +169,18 @@ d3.csv("stocks.csv", function(error, data) {
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+       
+       
+       // Add the X Axis
+    svg2.append("g")
+       .attr("class", "x axis")
+       .attr("transform", "translate(0," + height + ")")
+       .call(xAxis);
+       
+       // Add the Y Axis
+    svg2.append("g")
+       .attr("class", "y axis")
+       .call(yAxis);
 
 });
 
