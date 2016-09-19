@@ -75,7 +75,7 @@ var svg = d3.select("body")
 d3.csv("stocks.csv", function(error, data) {
     data.forEach(function(d) {
 		d.Encounter_date = parseDate(d.Encounter_date);
-		d.getMonth() = +d.getMonth();
+		d.Month = +d.getMonth();
         console.log(d.Encounter_date);
     });
 
