@@ -57,7 +57,7 @@ var TBILine = d3.svg.line()
     .y(function(d) { return y(d.Days_From1stTBI); });
     
 // Define the Dot
-var TBIDot = d3.svg.circle()
+var TBIDot = d3.svg.symbol()
     .x(function(d) { return x(d.Encounter_date);})
     .y(function(d) { return y(d.Days_From1stTBI); });
     
