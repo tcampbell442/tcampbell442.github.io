@@ -57,9 +57,9 @@ var getMonth = function(d){
 };
 
 // Define the line
-var priceline = d3.svg.line()	
+var TBILine = d3.svg.line()
     .x(function(d) { return x(d.Encounter_date);})
-    .y(function(d) { return y(d.d.Days_From1stTBI); });
+    .y(function(d) { return y(d.Days_From1stTBI); });
     
 // Adds the svg canvas
 var svg = d3.select("body")
@@ -100,7 +100,7 @@ d3.csv("stocks.csv", function(error, data) {
             .attr("class", "line")
             .style("stroke", function() { // Add the colours dynamically
                 return d.color = color(d.key); })
-            .attr("d", priceline(d.values));
+            .attr("d", TBILine(d.values));
 
         // Add the Legend
         svg.append("text")
