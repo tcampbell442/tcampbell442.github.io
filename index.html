@@ -83,9 +83,9 @@ d3.csv("stocks.csv", function(error, data) {
     x.domain(d3.extent(data, function(d) { return d.Encounter_date; }));
     y.domain([0, d3.max(data, function(d) { return d.Month; })]);
 
-    // Nest the entries by symbol
+    // Nest the entries by ID
     var dataNest = d3.nest()
-        .key(function(d) {return d.symbol;})
+        .key(function(d) {return d.PatientID;})
         .entries(data);
 
     var color = d3.scale.category10();   // set the colour scale
@@ -100,7 +100,7 @@ d3.csv("stocks.csv", function(error, data) {
         svg.append("path")
             .attr("class", "line")
             .style("stroke", function() { // Add the colours dynamically
-                return d.color = color(d.PatientID); })
+                return d.color = color(d.key); })
             .attr("d", priceline(d.values));
 
         // Add the Legend
@@ -109,8 +109,8 @@ d3.csv("stocks.csv", function(error, data) {
             .attr("y", height + (margin.bottom/2)+ 5)
             .attr("class", "legend")    // style the legend
             .style("fill", function() { // dynamic colours
-                return d.color = color(d.PatientID); })
-            .text(d.PatientID);
+                return d.color = color(d.key); })
+            .text(d.key);
     });
 
     // Add the X Axis
