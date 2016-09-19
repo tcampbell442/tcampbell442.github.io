@@ -91,10 +91,13 @@ d3.csv("stocks.csv", function(error, data) {
 
     legendSpace = width/dataNest.length; // spacing for legend
 
-    
+       var count = 0;
        
     // Loop through each symbol / key
-    dataNest.forEach(function(d,i) { 
+    dataNest.forEach(function(d,i) {
+                     
+        count = count +1;
+        console.output(count);
 
         svg.append("path")
             .attr("class", "line")
