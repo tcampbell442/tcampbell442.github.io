@@ -50,9 +50,15 @@ var xAxis = d3.svg.axis().scale(x)
 var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
 
+//Get count per month
+
+var getMonth = function(d){
+    
+};
+
 // Define the line
 var priceline = d3.svg.line()	
-.x(function(d) { return x(d.date);})
+    .x(function(d) { return x(d.date.ToString());})
     .y(function(d) { return y(d.price); });
     
 // Adds the svg canvas
@@ -63,6 +69,7 @@ var svg = d3.select("body")
     .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
+              
 
 // Get the data
 d3.csv("stocks.csv", function(error, data) {
