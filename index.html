@@ -56,6 +56,11 @@ var TBILine = d3.svg.line()
     .x(function(d) { return x(d.Encounter_date);})
     .y(function(d) { return y(d.Days_From1stTBI); });
     
+// Define the Dot
+var TBIDot = d3.svg.circle()
+    .x(function(d) { return x(d.Encounter_date);})
+    .y(function(d) { return y(d.Days_From1stTBI); });
+    
 // Adds the svg canvas
 var svg = d3.select("body")
     .append("svg")
@@ -114,9 +119,7 @@ d3.csv("stocks.csv", function(error, data) {
                      .data(data)
                      .enter().append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return x(d.Encounter_date); })
-                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
-                     
+                     .attr("c", TBIDot(d.values));
 
                      
         // Add the Legend
