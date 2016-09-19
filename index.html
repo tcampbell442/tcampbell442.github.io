@@ -110,7 +110,7 @@ d3.csv("stocks.csv", function(error, data) {
                      .attr("d", TBILine(d.values));
 
                 //dynamic scatter plot
-                svg.selectAll("dot")
+                svg.append("dot")
                      .data(data)
                      .enter().append("circle")
                      .attr("r", 3.5)
