@@ -58,7 +58,7 @@ var getMonth = function(d){
 
 // Define the line
 var priceline = d3.svg.line()	
-    .x(function(d) { return x(d.date.ToString());})
+    .x(function(d) { return x(d.date);})
     .y(function(d) { return y(d.price); });
     
 // Adds the svg canvas
