@@ -114,8 +114,8 @@ d3.csv("stocks.csv", function(error, data) {
                      .data(data)
                      .enter().append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d.values) { return x(d.Encounter_date); })
-                     .attr("cy", function(d.values) { return y(d.Days_From1stTBI); });
+                     .attr("cx", function(d,d.Encounter_date) { return x(d.Encounter_date); })
+                     .attr("cy", function(d, d.Encounter_date) { return y(d.Days_From1stTBI); });
                      
 
                      
