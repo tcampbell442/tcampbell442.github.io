@@ -33,8 +33,8 @@ path {
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 70, left: 50},
-    width = 3600 - margin.left - margin.right,
-    height = 1800 - margin.top - margin.bottom;
+    width = 4800 - margin.left - margin.right,
+    height = 2400 - margin.top - margin.bottom;
 
 // Parse the date / time
 var parseDate = d3.time.format("%Y-%m-%d").parse;
@@ -68,8 +68,8 @@ var svg = d3.select("body")
 
 var svg2 = d3.select("body")
 .append("svg")
-.attr("width", 3600 + width + margin.left + margin.right)
-.attr("height", 1800 + height + margin.top + margin.bottom)
+.attr("width", width + width + margin.left + margin.right)
+.attr("height", height + height + margin.top + margin.bottom)
 .append("g")
 .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
