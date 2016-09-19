@@ -112,8 +112,8 @@ d3.csv("stocks.csv", function(error, data) {
                 //dynamic scatter plot
                 svg.append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return x(d.Encounter_date); })
-                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+                     .attr("cx", function(d) { return d.Encounter_date; })
+                     .attr("cy", function(d) { return d.Days_From1stTBI; });
                      
 
                      
@@ -137,8 +137,8 @@ d3.csv("stocks.csv", function(error, data) {
                      //dynamic scatter plot
                      svg2.append("circle")
                      .attr("r", 3.5)
-                     .attr("cx", function(d) { return x(d.Encounter_date); })
-                     .attr("cy", function(d) { return y(d.Days_From1stTBI); });
+                     .attr("cx", function(d) { return d.Encounter_date; })
+                     .attr("cy", function(d) { return d.Days_From1stTBI; });
                      
                      
                      // Add the Legend
